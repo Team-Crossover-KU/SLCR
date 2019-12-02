@@ -111,3 +111,45 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: chest
+    clip: {fileID: 8300000, guid: 24d6cdf316e244e49bc0aa7cf6d3a7dd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death
+    clip: {fileID: 8300000, guid: 94bfc2d68df34544c8cce99b85bea084, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: health
+    clip: {fileID: 8300000, guid: 6979035e858dd924bb58c60454af0edb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: explode
+    clip: {fileID: 8300000, guid: ad33fb48fad12d942b956a6e840fc380, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: shot
+    clip: {fileID: 8300000, guid: 0d1681036e11da64f84d394fba94f8a5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_death
+    clip: {fileID: 8300000, guid: 9d45347c85284cd4397803d6194af37f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_hit
+    clip: {fileID: 8300000, guid: a1494dea09b5320459b87fba755c85d0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

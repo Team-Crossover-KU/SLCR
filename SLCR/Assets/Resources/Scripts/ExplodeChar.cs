@@ -42,7 +42,9 @@ public class ExplodeChar : Character
         if (health == 0)
         {
             nav.isStopped = true;
+            FindObjectOfType<AudioManager>().Play("explode");
             Invoke("Explode", 1);
+            
         }
         if (hit)
         {
@@ -61,7 +63,8 @@ public class ExplodeChar : Character
             if (explosionDelay > 0)
                 explosionDelay -= .1;
             else if (explosionDelay <= 0)
-                Invoke("Explode", 1);
+                FindObjectOfType<AudioManager>().Play("explode");
+                  Invoke("Explode", 1);
         }
     }
 

@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
        // Play("safe");
         //Play("battle2");
         Play("safe");
-        Stop();
+       
         Invoke("playAudio", 62f);
         // function PlayNextTrack
        // audio.Stop(); // just in case
@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
     void playAudio()
     {
-        
+       // s.source.Stop();
         Play("battle1");
     }
     // Update is called once per frame

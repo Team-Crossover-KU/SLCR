@@ -1753,7 +1753,7 @@ GameObject:
   - component: {fileID: 1904556589}
   m_Layer: 0
   m_Name: GunPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2420,46 +2420,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rifle (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: ammo
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: barrel
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: caliber
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: cyclicModifier
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: magazine
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: sight
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: stock
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: -3780365789732476092, guid: a8467b2700ebd734098b2abfc93bfab0,
-        type: 3}
-      propertyPath: underBarrel
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7248999088165635644, guid: a8467b2700ebd734098b2abfc93bfab0,
         type: 3}

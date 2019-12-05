@@ -29,6 +29,7 @@ public class UIController : MonoBehaviour
         {
             if (player1.IsPlayerDead())
             {
+                FindObjectOfType<AudioManager>().Play("death");
                 GameOverScreen.SetActive(true);
             }
         }

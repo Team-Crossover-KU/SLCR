@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8828175008528499322}
   - component: {fileID: 7405499311930210983}
   - component: {fileID: 103545031641328027}
+  - component: {fileID: -5599219930856997126}
   m_Layer: 0
   m_Name: Patrol Boi
   m_TagString: Patrol
@@ -33,8 +34,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206761444704761456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.55133, y: 3.0133514, z: -105.302414}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 78.55133, y: 3, z: -105.302414}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,7 +47,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206761444704761456}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 6329158148709259305, guid: 8dfd6472452c33546b668a70bd00cdfc, type: 3}
 --- !u!23 &1413988768725212854
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94,10 +95,10 @@ BoxCollider:
   m_GameObject: {fileID: 206761444704761456}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3.4, z: -3}
 --- !u!54 &7575389789981881203
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,3 +210,17 @@ MonoBehaviour:
   hitRadius: 3
   meleeDamage: 4
   invokeRunning: 0
+--- !u!64 &-5599219930856997126
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206761444704761456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 6329158148709259305, guid: 8dfd6472452c33546b668a70bd00cdfc, type: 3}

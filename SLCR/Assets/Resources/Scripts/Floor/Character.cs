@@ -43,6 +43,7 @@ public class Character : MonoBehaviour {
     {
         if (health == 0)
         {
+            FindObjectOfType<AudioManager>().Play("enemy_death");
             Object.Destroy(gameObject);
         }
         

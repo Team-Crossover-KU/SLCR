@@ -46,6 +46,7 @@ public class ExplodeChar : Character
         if (health == 0 || (player.transform.position - tr.position).magnitude <= 2)
         {
             nav.isStopped = true;
+            FindObjectOfType<AudioManager>().Play("explode");
             Invoke("Explode", 1);
         }
         if (hit)

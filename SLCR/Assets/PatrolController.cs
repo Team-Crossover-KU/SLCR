@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 public class PatrolController : Character
 {
 
@@ -29,8 +30,29 @@ public class PatrolController : Character
     {
         distance = (player.transform.position - tr.position).magnitude;
         if (health <= 0)
-            Destroy(gameObject);
-        if(distance <= hitRadius)
+        {
+            // if(GameObject.FindWithTag("TNT Boi"))
+            if(gameObject.tag == "TNT Boi")
+                {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+                System.Random rnd = new System.Random();
+                int death = rnd.Next(1, 3);
+
+                if (death ==1)
+                {
+                     FindObjectOfType<AudioManager>().Play("en_death1");
+                }
+                else FindObjectOfType<AudioManager>().Play("en_death2");
+            }
+           
+
+        }
+
+        if (distance <= hitRadius)
         {
             MeleeAttack();
         }

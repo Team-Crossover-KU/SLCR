@@ -26,7 +26,7 @@ public class Level1_Teleport : MonoBehaviour
 
             FindObjectOfType<AudioManager>().Stop("safe");
             FindObjectOfType<AudioManager>().Play("port");
-            Invoke("playAudio", 2f);
+            Invoke("playAudio", 2.8f);
             other.transform.position = Level1_Destination.transform.position;
             other.transform.rotation = Level1_Destination.transform.rotation;
         }

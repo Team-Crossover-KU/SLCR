@@ -11,6 +11,7 @@ public class SpawnLoot : MonoBehaviour
         public Transform loot2;
         public Transform loot3;
         public Transform loot4;
+    public Collider coll;
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +99,8 @@ public class SpawnLoot : MonoBehaviour
             gun = Instantiate((Receiver)possible[Random.Range(0, possible.Length)], location);
             gun.BuildGun();
             gun.CalculateStats();
+        coll = gun.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -112,6 +115,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/Receiver", typeof(Receiver));
         Receiver gun;
         gun = Instantiate((Receiver)possible[Random.Range(0, possible.Length)], location);
+        coll = gun.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -126,7 +131,10 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/Barrel", typeof(Barrel));
         Barrel barr;
         barr = Instantiate((Barrel)possible[Random.Range(0, possible.Length)], location);
+        coll = barr.GetComponent<Collider>();
+        coll.enabled = true;
     }
+
 
 /**
 * @pre: N/A.
@@ -140,6 +148,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/Caliber", typeof(Caliber));
         Caliber cal;
         cal = Instantiate((Caliber)possible[Random.Range(0, possible.Length)], location);
+        coll = cal.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -154,6 +164,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/CyclicModifier", typeof(CyclicModifier));
         CyclicModifier cyc;
         cyc = Instantiate((CyclicModifier)possible[Random.Range(0, possible.Length)], location);
+        coll = cyc.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -168,6 +180,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/Magazine", typeof(Magazine));
         Magazine mag;
         mag = Instantiate((Magazine)possible[Random.Range(0, possible.Length)], location);
+        coll = mag.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -182,6 +196,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/Sight", typeof(Sight));
         Sight sig;
         sig = Instantiate((Sight)possible[Random.Range(0, possible.Length)], location);
+        coll = sig.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -196,6 +212,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/Stock", typeof(Stock));
         Stock sto;
         sto = Instantiate((Stock)possible[Random.Range(0, possible.Length)], location);
+        coll = sto.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -210,6 +228,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("GunParts/UnderBarrel", typeof(UnderBarrel));
         UnderBarrel undBar;
         undBar = Instantiate((UnderBarrel)possible[Random.Range(0, possible.Length)], location);
+        coll = undBar.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 /**
@@ -224,6 +244,8 @@ public class SpawnLoot : MonoBehaviour
         possible = Resources.LoadAll("Health", typeof(Health));
         Health hea;
         hea = Instantiate((Health)possible[Random.Range(0, possible.Length)], location);
+        coll = hea.GetComponent<Collider>();
+        coll.enabled = true;
     }
 
 

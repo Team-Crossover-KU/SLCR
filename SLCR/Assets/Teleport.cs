@@ -36,7 +36,7 @@ public class Teleport : MonoBehaviour
             }
             else if(isL2EscapePortal && Player.GetComponent<Inventory>().BlackKey)
             {
-                FindObjectOfType<AudioManager>().Stop("battle1");
+                FindObjectOfType<AudioManager>().Stop("battle2");
                 FindObjectOfType<AudioManager>().Play("port");
                 Invoke("playAudio", .5f);
                 other.transform.position = Destination.transform.position;

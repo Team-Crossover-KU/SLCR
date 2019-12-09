@@ -15,6 +15,7 @@ public abstract class GunPart : MonoBehaviour
    */
    public virtual void Start()
     {
+        if(ID == "")
         ID = this.GetType().Name;
     }
 

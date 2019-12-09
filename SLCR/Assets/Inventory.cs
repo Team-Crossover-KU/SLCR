@@ -18,6 +18,9 @@ public class Inventory : MonoBehaviour
 
     public List<Receiver> builtGuns = new List<Receiver>();
 
+    public bool GoldKey = false;
+    public bool BlackKey = false;
+
     // Start is called before the first frame update
     void Start()
     {

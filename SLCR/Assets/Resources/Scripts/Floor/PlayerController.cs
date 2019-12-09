@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : Character
 {
+    public bool Victory = false;
     // Camera attached to player. Needed for Aiming
     public Camera cam;
     // Value for hover function. Unused Currently
@@ -299,6 +300,18 @@ public class PlayerController : Character
             playerHealth.transform.localScale = new Vector3(0, 1, 1);
             playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
             DeathScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            reticle.SetActive(false);
+        }
+
+        if(Victory)
+        {
+            PlayerIsDead = false;
+            playerAmmo.transform.localScale = new Vector3(0, 1, 1);
+            playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / 2, 0, 0);
+            playerHealth.transform.localScale = new Vector3(0, 1, 1);
+            playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
+            WinScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             reticle.SetActive(false);
         }

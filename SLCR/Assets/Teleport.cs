@@ -5,6 +5,10 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     public Transform Destination;
+    public bool isL1EscapePortal;
+    public bool isL2EscapePortal;
+    public bool isNormalPortal;
+    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +26,29 @@ public class Teleport : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            FindObjectOfType<AudioManager>().Stop("battle1");
-            FindObjectOfType<AudioManager>().Play("port");
-            Invoke("playAudio", .5f);
-            other.transform.position = Destination.transform.position;
-            other.transform.rotation = Destination.transform.rotation;
-        }
+            if(isL1EscapePortal && Player.GetComponent<Inventory>().GoldKey)
+            {
+                FindObjectOfType<AudioManager>().Stop("battle1");
+                FindObjectOfType<AudioManager>().Play("port");
+                Invoke("playAudio", .5f);
+                other.transform.position = Destination.transform.position;
+                other.transform.rotation = Destination.transform.rotation;
+            }
+            else if(isL2EscapePortal && Player.GetComponent<Inventory>().BlackKey)
+            {
+                FindObjectOfType<AudioManager>().Stop("battle1");
+                FindObjectOfType<AudioManager>().Play("port");
+                Invoke("playAudio", .5f);
+                other.transform.position = Destination.transform.position;
+                other.transform.rotation = Destination.transform.rotation;
+                Player.GetComponent<PlayerController>().Victory = true;
+            }
+            else if(isNormalPortal)
+            {
+                other.transform.position = Destination.transform.position;
+                other.transform.rotation = Destination.transform.rotation;
+            }
+        }        
     }
     public void playAudio()
     {

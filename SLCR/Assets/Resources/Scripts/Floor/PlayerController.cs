@@ -755,6 +755,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<AmmoType>());
+            collision.GetComponent<AmmoType>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "Barrel")
@@ -763,6 +764,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<Barrel>());
+            collision.GetComponent<Barrel>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "Caliber")
@@ -771,6 +773,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<Caliber>());
+            collision.GetComponent<Caliber>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "CyclicModifier")
@@ -779,6 +782,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<CyclicModifier>());
+            collision.GetComponent<CyclicModifier>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "Magazine")
@@ -787,6 +791,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<Magazine>());
+            collision.GetComponent<Magazine>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "Receiver")
@@ -795,6 +800,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<Receiver>());
+            collision.GetComponent<Receiver>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "Sight")
@@ -803,6 +809,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<Sight>());
+            collision.GetComponent<Sight>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "Stock")
@@ -811,6 +818,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<Stock>());
+            collision.GetComponent<Stock>().owner = this;
             collision.enabled = false;
         }
         else if (collision.gameObject.tag == "UnderBarrel")
@@ -819,6 +827,7 @@ public class PlayerController : Character
             collision.gameObject.transform.position = transform.position;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
             inventory.AddToInventory(collision.GetComponent<UnderBarrel>());
+            collision.GetComponent<UnderBarrel>().owner = this;
             collision.enabled = false;
         }
 

@@ -5,12 +5,13 @@ using UnityEngine;
 public abstract class GunPart : MonoBehaviour
 {
     public int ammountInInventory = 0;
+    public Character owner;
     public string ID = "";
     /**
    * @pre: N/A.
-   * @post N/A.
+   * @post: N/A.
    * @param: None.
-   * @return: Value that will not modify the original installed weapon's Damage.
+   * @return: Value that will not modify the original installed weapon's Name.
    * Override if you need to change stats when making a object that inherits this class.
    */
    public virtual void Start()

@@ -12087,6 +12087,14 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.17
   m_Center: {x: 0, y: 1.94, z: 0}
+--- !u!33 &479022310
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479022307}
+  m_Mesh: {fileID: 5876722744731809403, guid: 854cd205bd1f2ab4799270c4ba637ab5, type: 3}
 --- !u!43 &486566293
 Mesh:
   m_ObjectHideFlags: 0

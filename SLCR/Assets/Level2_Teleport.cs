@@ -21,7 +21,7 @@ public class Level2_Teleport : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && Player.GetComponent<Inventory>().GoldKey)
+        if(other.gameObject.tag == "Player" && Player.GetComponent<PlayerController>().inventory.GoldKey)
         {
             FindObjectOfType<AudioManager>().Stop("safe");
             FindObjectOfType<AudioManager>().Play("port");

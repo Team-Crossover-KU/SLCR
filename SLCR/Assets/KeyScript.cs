@@ -23,14 +23,14 @@ public class KeyScript : MonoBehaviour
     {
         if(other.gameObject.tag == "Player" && isGoldKey)
         {
-            Player.GetComponent<Inventory>().GoldKey = true;
+            Player.GetComponent<PlayerController>().inventory.GoldKey = true;
             FindObjectOfType<AudioManager>().Play("got_key");
 
             Destroy(gameObject);
         }
         else if(other.gameObject.tag == "Player" && isBlackKey)
         {
-            Player.GetComponent<Inventory>().BlackKey = true;
+            Player.GetComponent<PlayerController>().inventory.BlackKey = true;
             FindObjectOfType<AudioManager>().Play("got_key");
             Destroy(gameObject);
         }

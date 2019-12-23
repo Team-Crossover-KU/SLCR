@@ -26,7 +26,7 @@ public class Teleport : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if(isL1EscapePortal && Player.GetComponent<Inventory>().GoldKey)
+            if(isL1EscapePortal && Player.GetComponent<PlayerController>().inventory.GoldKey)
             {
                 FindObjectOfType<AudioManager>().Stop("battle1");
                 FindObjectOfType<AudioManager>().Play("port");
@@ -34,7 +34,7 @@ public class Teleport : MonoBehaviour
                 other.transform.position = Destination.transform.position;
                 other.transform.rotation = Destination.transform.rotation;
             }
-            else if(isL2EscapePortal && Player.GetComponent<Inventory>().BlackKey)
+            else if(isL2EscapePortal && Player.GetComponent<PlayerController>().inventory.BlackKey)
             {
                 FindObjectOfType<AudioManager>().Stop("battle2");
                 FindObjectOfType<AudioManager>().Play("port");

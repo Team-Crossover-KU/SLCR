@@ -933,6 +933,10 @@ public class PlayerController : Character
     public void Interact()
     {
         menuEnabled = !menuEnabled;
+        if (reticle.activeInHierarchy)
+           reticle.SetActive(false);
+        else
+            reticle.SetActive(true);
         /*
         Quaternion derpRot = Quaternion.Euler(cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
         Vector3 derp = new  Vector3 (cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);

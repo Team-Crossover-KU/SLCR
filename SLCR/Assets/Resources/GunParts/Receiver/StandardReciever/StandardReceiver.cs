@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class StandardReceiver : Receiver
 {
     public bool buildOnStart = false;
+    public bool buildRandomOnStart = false;
     new public const int NUM_PARTS = 8;
     public AmmoType ammo;
     public Barrel barrel;
@@ -109,6 +110,7 @@ public abstract class StandardReceiver : Receiver
         underBarrel = Instantiate(RollUnderBarrel(), this.transform);
         underBarrel.Attach(this);
         readyForUse = true;
+        CalculateStats();
         return true;
     }
 

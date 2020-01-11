@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+
 
 public class PlayerController : Character
 {
@@ -42,6 +44,8 @@ public class PlayerController : Character
     public int selectHeld = 0;
     public int submitHeld = 0;
     public int interactHeld = 0;
+    public bool menuEnabled;
+    public bool paused;
 
     // If the player is on the ground
     public bool grounded = true;
@@ -66,6 +70,7 @@ public class PlayerController : Character
     //Timer for cancel mechanics, Not currently used
     public int attackState = 0;
 
+    
     //Switch to control how player swaps between weapons
     public int weaponStyle;
     //Weapon player is currently using
@@ -89,54 +94,18 @@ public class PlayerController : Character
     // Timer for time player is unable to be hurt after taking damage
     public int iFrames;
 
-    // Crosshair for player to use for gun.
-    public GameObject reticle;
-
-    // Player HUD containing health bar and ammo counter.
-    public GameObject playerHUD;
-
-    // Player Health Bar on Player HUD.
-    public GameObject playerHealth;
-
-    // Player Health Bar on Player HUD.
-    public GameObject playerAmmo;
-
-    // UI Panel to pop up when player wants to pause the game.
-    public GameObject PauseMenu;
-    // Resume Game Button found under Pause Menu.
-    public Button resumeButton;
-    // Pause Game Flag.
-    public Text pauseMenuText;
-    // Pause Menu / Start Menu Flag.
-    public bool paused;
-    public bool menuEnabled;
-
-    // UI Panel to pop up when Player health is below Zero.
-    public GameObject DeathScreen;
-    public Text GameOverText;
-
     // PlayerIsDead Flag.
     bool PlayerIsDead;
 
-    // UI Panel to pop up when Player wins the game.
-    public GameObject WinScreen;
 
-    public Button restartButton;
 
     // Use this for initialization
     public override void Start()
     {
-        WinScreen.SetActive(false);
-        DeathScreen.SetActive(false);
-        playerHUD.SetActive(false);
-        reticle.SetActive(false);
-        PauseMenu.SetActive(true);
-        resumeButton.onClick.AddListener(PauseMenuController);
-        menuEnabled = true;
-        base.Start();
+       
         base.Start();
         jumpsRemaining = maxJump;
-        restartButton.interactable = true;
+       
         rb = this.GetComponent("Rigidbody") as Rigidbody;
         tr = this.GetComponent("Transform") as Transform;
         //TimeComboUI.text = "ComboTime: " + timeCombo.ToString();
@@ -155,9 +124,6 @@ public class PlayerController : Character
             thirdWeapon = defaultWeapon;
         }
         PlayerIsDead = false;
-
-        playerAmmo.transform.localScale = new Vector3((float)equipedWeapon.loadedAmmoCount / (float)equipedWeapon.baseCapacity, 1, 1);
-        playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / (((float)equipedWeapon.baseCapacity / 100) * 2), 0, 0);
     }
 
     /**
@@ -238,6 +204,24 @@ public class PlayerController : Character
             Jump();
             GravControl();
         }
+
+        if (health > 0)
+        {
+            if (menuEnabled)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+               // ChangeHealth(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.BackQuote))
+            {
+            }
+        }
+
         GunID();
     }
 
@@ -266,55 +250,7 @@ public class PlayerController : Character
 
         }
 
-        if (health > 0)
-        {
-            if (menuEnabled)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                ChangeHealth(1);
-                if (equipedWeapon.loadedAmmoCount > 0)
-                    playerAmmo.transform.localScale = new Vector3((float)equipedWeapon.loadedAmmoCount / (float)equipedWeapon.baseCapacity, 1, 1);
-                else
-                    playerAmmo.transform.localScale = new Vector3(0, 1, 1);
-
-                if (equipedWeapon.capacity / 100 > 0)
-                    playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / (((float)equipedWeapon.baseCapacity / 100) * 2), 0, 0);
-                else
-                    playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / 2, 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.BackQuote))
-            {
-                PauseMenuController();
-            }
-        }
-        else
-        {
-            PlayerIsDead = true;
-            playerAmmo.transform.localScale = new Vector3(0, 1, 1);
-            playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / 2, 0, 0);
-            playerHealth.transform.localScale = new Vector3(0, 1, 1);
-            playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
-            DeathScreen.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            reticle.SetActive(false);
-        }
-
-        if(Victory)
-        {
-            PlayerIsDead = false;
-            playerAmmo.transform.localScale = new Vector3(0, 1, 1);
-            playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / 2, 0, 0);
-            playerHealth.transform.localScale = new Vector3(0, 1, 1);
-            playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
-            WinScreen.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            reticle.SetActive(false);
-        }
+        
     }
 
     /**
@@ -323,32 +259,6 @@ public class PlayerController : Character
   * @param: None.
   * @return: None.
   */
-    public void PauseMenuController()
-    {
-        if (paused)
-        {
-            PauseMenu.SetActive(false);
-            menuEnabled = false;
-            paused = false;
-            resumeButton.interactable = false;
-            reticle.SetActive(true);
-            playerHUD.SetActive(true);
-
-            Debug.Log("Game Resumed");
-        }
-        else
-        {
-            pauseMenuText.text = "Game Paused";
-            PauseMenu.SetActive(true);
-            menuEnabled = true;
-            paused = true;
-            resumeButton.interactable = true;
-            reticle.SetActive(false);
-            playerHUD.SetActive(false);
-
-            Debug.Log("Game Paused");
-        }
-    }
 
     /**
    * @pre: N/A.
@@ -367,11 +277,12 @@ public class PlayerController : Character
    * @param: None.
    * @return: None.
    */
+    public UnityEvent weaponCheck;
     void WeaponSelect()
     {
         if (defaultWeapon != null)
         {
-
+            
 
             if (Input.GetAxisRaw("SelectWeaponBack") == 1 && selectWeaponBackHeld == 0)
                 {
@@ -388,8 +299,8 @@ public class PlayerController : Character
                     {
                         equipedWeapon = secondWeapon;
                     }
-                    
-                }
+                    weaponCheck.Invoke();
+            }
                 
                 else if (Input.GetAxisRaw("SelectWeaponForward") == 1 && selectWeaponForwardHeld == 0)
                 {
@@ -405,12 +316,14 @@ public class PlayerController : Character
                     {
                         equipedWeapon = defaultWeapon;
                     }
+                    weaponCheck.Invoke();
                 }
                 
             //if (equipedWeapon.title != null)
             // WeaponTextUI.text = equipedWeapon.title;
 
         }
+        
     }
 
     /**
@@ -419,6 +332,8 @@ public class PlayerController : Character
    * @param: None.
    * @return: None.
    */
+
+ 
     void Attack()
     {
         if (defaultWeapon != null)
@@ -431,35 +346,42 @@ public class PlayerController : Character
                 // Quaternion derp = Quaternion.Euler(0, transform.rotation.y, 0);
                 Quaternion derp = Quaternion.Euler(cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
                 equipedWeapon.Fire(transform.position, derp);
+                weaponCheck.Invoke();
             }
             else if (Input.GetAxisRaw("Fire") == 1 && fireHeld != 0)
             {
                 Quaternion derp = Quaternion.Euler(cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
                 equipedWeapon.HoldFire(transform.position, derp);
                 holdFire = true;
+                weaponCheck.Invoke();
 
             }
             else if (Input.GetAxisRaw("Fire") == 0 && holdFire)
             {
                 equipedWeapon.ReleaseHoldFire();
                 holdFire = false;
+                weaponCheck.Invoke();
             }
 
             if (Input.GetAxisRaw("AltFire") == 1 && altFireHeld == 0)
             {
 
                 equipedWeapon.AltFire();
+                weaponCheck.Invoke();
             }
 
             if (Input.GetAxisRaw("ADS") == 1 && aimHeld == 0)
             {
                 equipedWeapon.ADS();
+                weaponCheck.Invoke();
             }
 
             if (Input.GetAxisRaw("Reload") == 1 && reloadHeld == 0)
             {
                 equipedWeapon.ReloadMag();
+                weaponCheck.Invoke();
             }
+            
 
 
         }
@@ -839,7 +761,7 @@ public class PlayerController : Character
    * @param: derp is new default Weapon.
    * @return: None.
    */
-   
+
 
     /**
    * @pre: N/A.
@@ -847,6 +769,8 @@ public class PlayerController : Character
    * @param: change is value to be added to health.
    * @return: None.
    */
+
+    public UnityEvent onHealthChange;
     public override void ChangeHealth(float change)
     {
         if (iFrames <= 0)
@@ -856,7 +780,7 @@ public class PlayerController : Character
                 health = 0;
                 iFrames = 50;
             }
-            else if (health + change >= maxHealth)
+            else if (health + change >= maxHealth && change > 0)
             {
                 health = maxHealth;
             }
@@ -865,10 +789,8 @@ public class PlayerController : Character
                 health = health + change;
                 iFrames = 50;
             }
+            onHealthChange.Invoke();
         }
-
-        playerHealth.transform.localScale = new Vector3(health / maxHealth, 1, 1);
-        playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
     /**
@@ -877,6 +799,10 @@ public class PlayerController : Character
    * @param: change is value to be added to health, saving frames is time the player is invulnerable after health is changed.
    * @return: None.
    */
+
+    
+
+
     public virtual void ChangeHealth(float change, int savingFrames)
     {
         if (iFrames <= 0)
@@ -886,7 +812,7 @@ public class PlayerController : Character
                 health = 0;
                 iFrames = savingFrames;
             }
-            else if (health + change >= maxHealth)
+            else if (health + change >= maxHealth && change > 0)
             {
                 health = maxHealth;
                 iFrames = savingFrames;
@@ -896,10 +822,8 @@ public class PlayerController : Character
                 health = health + change;
                 iFrames = savingFrames;
             }
+            onHealthChange.Invoke();
         }
-
-        playerHealth.transform.localScale = new Vector3(health / maxHealth, 1, 1);
-        playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
     /**
@@ -933,10 +857,7 @@ public class PlayerController : Character
     public void Interact()
     {
         menuEnabled = !menuEnabled;
-        if (reticle.activeInHierarchy)
-           reticle.SetActive(false);
-        else
-            reticle.SetActive(true);
+        
         /*
         Quaternion derpRot = Quaternion.Euler(cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
         Vector3 derp = new  Vector3 (cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);

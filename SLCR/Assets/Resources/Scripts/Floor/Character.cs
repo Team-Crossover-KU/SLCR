@@ -28,7 +28,7 @@ public class Character : MonoBehaviour {
    * @return: None.
    */
     public virtual void Start () {
-        maxHealth = health;
+        //maxHealth = health;
         rb = this.GetComponent("Rigidbody2D") as Rigidbody;
         tr = this.GetComponent("Transform") as Transform;
     }

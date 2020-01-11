@@ -16,7 +16,11 @@ public class RifleScript : StandardReceiver
     {
         base.Start();
         parts = new GunPart[NUM_PARTS];
-        if (buildOnStart)
+        if (buildRandomOnStart)
+        {
+            BuildGun();
+        }
+        else if (buildOnStart)
         {
             BuildGun();
         }
